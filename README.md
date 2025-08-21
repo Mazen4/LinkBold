@@ -3,7 +3,7 @@
 **LinkBold is a containerized URL shortener with built-in monitoring,
 visualization, and alerting powered by Prometheus and Grafana.**
 
-![LinkBold Logo](A_two-dimensional_digital_vector_logo_for_the_serv.png)
+![LinkBold Logo](assets/A_two-dimensional_digital_vector_logo_for_the_serv.png)
 
 ------------------------------------------------------------------------
 
