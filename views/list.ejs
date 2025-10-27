@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset='utf-8'><title>Links</title></head>
+<body style='font-family:sans-serif;max-width:900px;margin:40px auto;'>
+  <h1>Shortened URLs</h1>
+  <table border='1' cellpadding='6' cellspacing='0' width='100%'>
+    <tr><th>Short</th><th>Target</th><th>Visits</th><th>Created</th></tr>
+    <% items.forEach(it => { %>
+    <tr>
+      <td><a href='<%= baseUrl %>/<%= it.code %>'><%= baseUrl %>/<%= it.code %></a></td>
+      <td><a href='<%= it.target %>' target='_blank'><%= it.target %></a></td>
+      <td><%= it.visits %></td>
+      <td><%= it.created_at.toISOString() %></td>
+    </tr>
+    <% }) %>
+  </table>
+</body></html>
