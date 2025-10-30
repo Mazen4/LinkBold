@@ -10,7 +10,6 @@ dotenv.config();
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 
-app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '../views'));
 app.use(bodyParser.json());
@@ -59,5 +58,9 @@ app.get('/admin/list', async (req, res) => {
 app.get('/', (req, res) => {
   res.render('index', { baseUrl: process.env.BASE_URL });
 });
-
-app.listen(process.env.PORT, () => console.log(`Server running on port ${process.env.PORT}`));
+app.use(express.static('public'));
+app.listen(process.env.PORT, '0.0.0.0', () => {
+  console.log(`Server running on port ${process.env.PORT}`);
+  console.log(`Mode: ${process.env.NODE_ENV}`);
+  console.log(`Base URL: ${process.env.BASE_URL}`);
+});
