@@ -9,10 +9,10 @@ visualization, and alerting powered by Prometheus and Grafana.**
 
 ### Team members
 
--   Mazen Magdy Ahmed Abdelsalam\
--   Mostafa Abd Elrahman Mostafa\
--   Ahmed Khaled AbdelRahman Darwish\
--   Rawan Mohamed Ahmed Elsherbiny\
+-   Mazen Magdy Ahmed Abdelsalam
+-   Mostafa Abd Elrahman Mostafa
+-   Ahmed Khaled AbdelRahman Darwish
+-   Rawan Mohamed Ahmed Elsherbiny
 -   Feryal AbdElMAksoud Hammed AbdElMAksoud
 
 ------------------------------------------------------------------------
