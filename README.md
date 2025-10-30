@@ -13,7 +13,7 @@ visualization, and alerting powered by Prometheus and Grafana.**
 -   Mostafa Abd Elrahman Mostafa
 -   Ahmed Khaled AbdelRahman Darwish
 -   Rawan Mohamed Ahmed Elsherbiny
--   Feryal AbdElMAksoud Hammed AbdElMAksoud
+-   Feryal AbdElMaksoud Hammed AbdElMaksoud
 
 ------------------------------------------------------------------------
 
