@@ -9,11 +9,11 @@ visualization, and alerting powered by Prometheus and Grafana.**
 
 ### Team members
 
--   Mazen Magdy Ahmed Abdelsalam\
--   Mostafa Abd Elrahman Mostafa\
--   Ahmed Khaled AbdelRahman Darwish\
--   Rawan Mohamed Ahmed Elsherbiny\
--   Feryal AbdElMAksoud Hammed AbdElMAksoud
+-   Mazen Magdy Ahmed Abdelsalam
+-   Mostafa Abd Elrahman Mostafa
+-   Ahmed Khaled AbdelRahman Darwish
+-   Rawan Mohamed Ahmed Elsherbiny
+-   Feryal AbdElMaksoud Hammed AbdElMaksoud
 
 ------------------------------------------------------------------------
 
@@ -36,14 +36,14 @@ Flask/Express**
 ### Project Objectives
 
 -   Develop a fully functional URL shortener with API endpoints for
-    shorten and redirect.\
+    shorten and redirect.
 -   Containerize the application and run it locally with Docker
-    Compose.\
+    Compose.
 -   Instrument the service with Prometheus custom metrics (URL creation,
-    redirects, errors, latency).\
+    redirects, errors, latency).
 -   Build a Grafana dashboard to visualize service health and usage
-    trends.\
--   Configure alerts and persistence to ensure reliability.\
+    trends.
+-   Configure alerts and persistence to ensure reliability.
 -   Document the entire setup and API endpoints.
 
 ------------------------------------------------------------------------
@@ -51,13 +51,13 @@ Flask/Express**
 ### Project Scope
 
 -   **Service Development**: Build a webservice with API endpoints
-    (`/shorten`, `/<code>`).\
+    (`/shorten`, `/<code>`).
 -   **Containerization**: Package the service with Docker & manage with
-    Docker Compose.\
+    Docker Compose.
 -   **Monitoring**: Add Prometheus metrics and visualize with Grafana
-    dashboards.\
+    dashboards.
 -   **Alerting & Persistence**: Configure alerts and enable data
-    persistence with Docker volumes.\
+    persistence with Docker volumes.
 -   **Documentation**: Provide API docs and project usage guide.
 
 ------------------------------------------------------------------------
@@ -66,22 +66,22 @@ Flask/Express**
 
 The project will be executed over **4 weeks**.
 
-**Week 1: Service Development & Containerization**\
+**Week 1: Service Development & Containerization**
 - Tasks: Build URL shortener, SQLite storage, Dockerfile, docker-compose
-setup.\
+setup.
 - Deliverables: Running service container with shorten/redirect
 endpoints.
 
-**Week 2: Prometheus Integration**\
-- Tasks: Add custom metrics, configure Prometheus scraping.\
+**Week 2: Prometheus Integration**
+- Tasks: Add custom metrics, configure Prometheus scraping.
 - Deliverables: Updated service with `/metrics`, prometheus.yml config.
 
-**Week 3: Grafana Dashboard**\
+**Week 3: Grafana Dashboard**
 - Tasks: Integrate Grafana, build custom dashboard (URL counts, latency,
-errors).\
+errors).
 - Deliverables: Grafana dashboard with actionable insights.
 
-**Week 4: Alerting & Documentation**\
-- Tasks: Configure alerts, add persistence, write README/API docs.\
+**Week 4: Alerting & Documentation**
+- Tasks: Configure alerts, add persistence, write README/API docs.
 - Deliverables: Stable stack with persistence, Grafana alerts, project
 documentation.
