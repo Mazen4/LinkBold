@@ -1,40 +1,24 @@
-import pkg from 'pg';
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+// src/db.js
+import pg from 'pg';
 import dotenv from 'dotenv';
 
-dotenv.config(); // ✅ ensure environment variables are loaded first
+dotenv.config();
 
-const { Pool } = pkg;
+const { Pool } = pg;
 
-// Prefer DATABASE_URL, fallback to explicit fields
-const connectionString = process.env.DATABASE_URL;
-let pool;
+// Create a connection pool using the DATABASE_URL from .env
+export const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: process.env.NODE_ENV === 'production' ? false : false, // disable SSL for local/Docker
+});
 
-if (connectionString && typeof connectionString === 'string') {
-  pool = new Pool({ connectionString });
-} else {
-  pool = new Pool({
-    user: process.env.PGUSER || 'shortuser',
-    password: process.env.PGPASSWORD || 'shortpass',
-    host: process.env.PGHOST || 'localhost',
-    port: process.env.PGPORT ? parseInt(process.env.PGPORT) : 5432,
-    database: process.env.PGDATABASE || 'shortener',
-  });
-}
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const migrationPath = path.join(__dirname, 'migrations', '001_create_table.sql');
-const sql = fs.readFileSync(migrationPath, 'utf-8');
-
+// Optional: test connection on startup
 (async () => {
   try {
-    await pool.query(sql);
-    console.log('✅ Database migrated successfully');
+    const client = await pool.connect();
+    console.log('✅ Database connected successfully');
+    client.release();
   } catch (err) {
-    console.error('❌ Migration failed:', err.message);
+    console.error('❌ Database connection failed:', err.message);
   }
 })();
-
-export { pool };

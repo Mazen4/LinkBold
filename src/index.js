@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
+import { runMigrations } from './migrate.js';
 import { pool } from './db.js';
 import { generateCode } from './utils.js';
 import path from 'path';
@@ -60,4 +61,12 @@ app.get('/', (req, res) => {
   res.render('index', { baseUrl: process.env.BASE_URL });
 });
 
-app.listen(process.env.PORT, () => console.log(`Server running on port ${process.env.PORT}`));
+// Run migrations before starting the server
+runMigrations().then(() => {
+  app.listen(process.env.PORT, '0.0.0.0', () => {
+    console.log(`✅ Database ready & server running on port ${process.env.PORT}`);
+  });
+}).catch(err => {
+  console.error('❌ Migration error:', err);
+  process.exit(1);
+});
