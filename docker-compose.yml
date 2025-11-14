@@ -31,8 +31,8 @@ services:
     ports:
       - "5000:5000"
     command: npm start
-
-prometheus:
+  
+  prometheus:
     image: prom/prometheus:latest
     restart: unless-stopped
     ports:
