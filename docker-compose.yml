@@ -43,6 +43,18 @@ services:
       - '--config.file=/etc/prometheus/prometheus.yml'
     depends_on:
       - web
+    
+    grafana:
+    image: grafana/grafana-oss:latest
+    container_name: linkbold-grafana
+    restart: unless-stopped
+    ports:
+      - "3000:3000"  # Grafana's default port
+    volumes:
+      - grafana_data:/var/lib/grafana
+    depends_on:
+      - prometheus
 
 volumes:
   pgdata:
+  grafana_data:
