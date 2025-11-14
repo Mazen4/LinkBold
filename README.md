@@ -1,87 +1,142 @@
 # LinkBold
 
-**LinkBold is a containerized URL shortener with built-in monitoring,
-visualization, and alerting powered by Prometheus and Grafana.**
+![LinkBold Logo](https://raw.githubusercontent.com/Mazen4/LinkBold/main/assets/logo.png)
 
-![LinkBold Logo](assets/A_two-dimensional_digital_vector_logo_for_the_serv.png)
+LinkBold is a containerized URL shortener with built-in monitoring, visualization, and alerting. This project was built to satisfy all requirements of a 4-week DevOps challenge, from initial development to a fully persistent and monitored production-ready stack.
 
-------------------------------------------------------------------------
+---
 
-### Team members
+## 🛠️ Technology Stack
 
--   Mazen Magdy Ahmed Abdelsalam
--   Mostafa Abd Elrahman Mostafa
--   Ahmed Khaled AbdelRahman Darwish
--   Rawan Mohamed Ahmed Elsherbiny
--   Feryal AbdElMaksoud Hammed AbdElMaksoud
+This project uses a modern, container-based architecture:
 
-------------------------------------------------------------------------
+* **Application:** Node.js, Express
+* **Database:** PostgreSQL
+* **Containerization:** Docker, Docker Compose
+* **Metrics Collection:** Prometheus
+* **Visualization & Alerting:** Grafana
 
-### Project Overview
+---
 
-The LinkBold project focuses on building a containerized URL shortener
-webservice and monitoring its performance.\
-The service will be developed using a lightweight web framework
-(Flask/Express) with SQLite for storage, containerized with Docker, and
-monitored using Prometheus and Grafana.\
-The project will enable shortening URLs, redirecting, tracking
-performance metrics, and visualizing insights through dashboards and
-alerts.
+## ✨ Features
 
-Technologies: **Docker, Docker Compose, Prometheus, Grafana, SQLite,
-Flask/Express**
+* **URL Shortener:** Core API for shortening URLs and handling redirects.
+* **Custom Prometheus Metrics:**
+  * `linkbold_urls_shortened_total`
+  * `linkbold_redirects_total`
+  * `linkbold_not_found_total`
+  * `linkbold_request_latency_seconds`
+* **Grafana Dashboard:** Real-time visualization of redirects, errors, and latency.
+* **Proactive Alerting:** Grafana alert triggers when 404 errors exceed threshold.
+* **Persistence:** Docker named volumes (`pgdata`, `prometheus_data`, `grafana_data`) preserve all data.
 
-------------------------------------------------------------------------
+---
 
-### Project Objectives
+## 🚀 How to Run (Local or EC2)
 
--   Develop a fully functional URL shortener with API endpoints for
-    shorten and redirect.
--   Containerize the application and run it locally with Docker
-    Compose.
--   Instrument the service with Prometheus custom metrics (URL creation,
-    redirects, errors, latency).
--   Build a Grafana dashboard to visualize service health and usage
-    trends.
--   Configure alerts and persistence to ensure reliability.
--   Document the entire setup and API endpoints.
+This stack runs on any machine with Docker and Docker Compose.
 
-------------------------------------------------------------------------
+### 1. Prerequisites
+* Git
+* Docker
+* Docker Compose
 
-### Project Scope
+### 2. Clone the Repository
 
--   **Service Development**: Build a webservice with API endpoints
-    (`/shorten`, `/<code>`).
--   **Containerization**: Package the service with Docker & manage with
-    Docker Compose.
--   **Monitoring**: Add Prometheus metrics and visualize with Grafana
-    dashboards.
--   **Alerting & Persistence**: Configure alerts and enable data
-    persistence with Docker volumes.
--   **Documentation**: Provide API docs and project usage guide.
+```bash
+git clone https://github.com/Mazen4/LinkBold.git
+cd LinkBold
+```
 
-------------------------------------------------------------------------
+### 3. Launch the Stack
 
-### Project Plan
+This builds the app image and starts all services. Named volumes are created automatically.
 
-The project will be executed over **4 weeks**.
+```bash
+sudo docker compose up -d --build
+```
 
-**Week 1: Service Development & Containerization**
-- Tasks: Build URL shortener, SQLite storage, Dockerfile, docker-compose
-setup.
-- Deliverables: Running service container with shorten/redirect
-endpoints.
+### 4. Stopping and Cleaning Up
 
-**Week 2: Prometheus Integration**
-- Tasks: Add custom metrics, configure Prometheus scraping.
-- Deliverables: Updated service with `/metrics`, prometheus.yml config.
+Stop containers only (data persists):
 
-**Week 3: Grafana Dashboard**
-- Tasks: Integrate Grafana, build custom dashboard (URL counts, latency,
-errors).
-- Deliverables: Grafana dashboard with actionable insights.
+```bash
+sudo docker compose down
+```
 
-**Week 4: Alerting & Documentation**
-- Tasks: Configure alerts, add persistence, write README/API docs.
-- Deliverables: Stable stack with persistence, Grafana alerts, project
-documentation.
+Stop containers and remove volumes (full reset):
+
+```bash
+sudo docker compose down -v
+```
+
+---
+
+## 🖥️ Accessing the Services
+
+| Service       | URL (replace `<YOUR_IP>`)           | Purpose                                   |
+|--------------|--------------------------------------|-------------------------------------------|
+| LinkBold App | http://<YOUR_IP>:5000             | URL shortener web UI                     |
+| Grafana      | http://<YOUR_IP>:3000             | Visualization dashboard (admin, admin)    |
+| Prometheus   | http://<YOUR_IP>:9090             | Metrics interface                         |
+
+---
+
+## 📖 API Documentation
+
+### 1. Create a Short URL
+
+**Endpoint:** `/shorten`  
+**Method:** `POST`  
+**Description:** Creates a new short link.
+
+**Request Body (JSON):**
+
+```json
+{
+  "url": "https://www.google.com",
+  "custom": "my-google-link"
+}
+```
+
+`url`: required, the original link  
+`custom`: optional, custom code  
+
+**Success Response (201):**
+
+```json
+{
+  "short_url": "http://<YOUR_IP>:5000/my-google-link",
+  "code": "my-google-link",
+  "target": "https://www.google.com"
+}
+```
+
+**Error Response (409):**  
+Returned when the custom code already exists.
+
+---
+
+### 2. Redirect to Long URL
+
+**Endpoint:** `/:code`  
+**Method:** `GET`  
+
+Redirects to the original URL with HTTP 302.  
+If not found, returns **404**.
+
+Example:  
+Accessing  
+`http://<YOUR_IP>:5000/my-google-link`  
+redirects to  
+`https://www.google.com`.
+
+---
+
+## 👥 Team Members
+
+* Mazen Magdy Ahmed Abdelsalam
+* Mostafa Abd Elrahman Mostafa
+* Ahmed Khaled AbdelRahman Darwish
+* Rawan Mohamed Ahmed Elsherbiny
+* Feryal AbdElMaksoud Hammed AbdElMaksoud
