@@ -1,6 +1,6 @@
 # LinkBold
 
-![LinkBold Logo](https://wwww.github.com/Mazen4/LinkBold/main/assets/A_two-dimensional_digital_vector_logo_for_the_serv.png)
+![LinkBold Logo](https://github.com/Mazen4/LinkBold/blob/main/assets/A_two-dimensional_digital_vector_logo_for_the_serv.png?raw=true)
 
 LinkBold is a containerized URL shortener with built-in monitoring, visualization, and alerting. This project was built to satisfy all requirements of a 4-week DevOps challenge, from initial development to a fully persistent and monitored production-ready stack.
 
