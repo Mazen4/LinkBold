@@ -123,14 +123,17 @@ app.get('/:code', async (req, res) => {
 
 // Admin list
 app.get('/admin/list', async (req, res) => {
-  // This page is not part of the core metrics, so we leave it as-is.
+  // Dynamically get the public host
+  const baseUrl = `${req.protocol}://${req.get('host')}`;
   const result = await pool.query('SELECT * FROM short_urls ORDER BY created_at DESC LIMIT 100');
-  res.render('list', { items: result.rows, baseUrl: process.env.BASE_URL });
+  res.render('list', { items: result.rows, baseUrl: baseUrl });
 });
 
 // Root page
 app.get('/', (req, res) => {
-  res.render('index', { baseUrl: process.env.BASE_URL });
+  // Dynamically get the public host
+  const baseUrl = `${req.protocol}://${req.get('host')}`;
+  res.render('index', { baseUrl: baseUrl });
 });
 
 // Run migrations before starting the server
