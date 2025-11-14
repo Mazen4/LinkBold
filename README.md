@@ -56,18 +56,12 @@ This builds the app image and starts all services. Named volumes are created aut
 sudo docker compose up -d --build
 ```
 
-### 4. Stopping and Cleaning Up
+### 4. Stopping
 
 Stop containers only (data persists):
 
 ```bash
 sudo docker compose down
-```
-
-Stop containers and remove volumes (full reset):
-
-```bash
-sudo docker compose down -v
 ```
 
 ---
