@@ -39,6 +39,7 @@ services:
       - "9090:9090"
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
     depends_on:
@@ -58,3 +59,4 @@ services:
 volumes:
   pgdata:
   grafana_data:
+  prometheus_data:
