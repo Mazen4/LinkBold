@@ -44,7 +44,7 @@ services:
     depends_on:
       - web
     
-    grafana:
+  grafana:
     image: grafana/grafana-oss:latest
     container_name: linkbold-grafana
     restart: unless-stopped
